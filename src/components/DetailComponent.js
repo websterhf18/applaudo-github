@@ -3,12 +3,19 @@ import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 const DetailComponent = ({ dataItem, imageUri, dataType  }) => {
+    const getHttpsURI = () => {
+        var httpsImage = imageUri;
+        if (imageUri && imageUri.indexOf('https') === -1) {
+            httpsImage = imageUri.replace('http', 'https');
+        }
+        return httpsImage;
+    }
     return (
         <Row>
             <Col>
                 <img 
                 alt="Detail component"     
-                src={imageUri.indexOf('https') === -1 ? imageUri.replace('http', 'https') : imageUri}/>
+                src={getHttpsURI()}/>
             </Col>
             <Col>
                 {dataType === 'comics' ?
