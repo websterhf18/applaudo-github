@@ -22,7 +22,7 @@ export const getDetailComics = (id = null) => async (dispatch) => {
 
 export const getMoreCharacters = (id = null, offset = 0) => async (dispatch) => {
     try {
-        const result = await axios.get(MARVEL_API+COMICS_URL+'/'+id+CHARACTERS_URL+'?orderBy=issueNumber&offset='+offset+'&apikey='+MARVEL_API_KEY);
+        const result = await axios.get(MARVEL_API+COMICS_URL+'/'+id+CHARACTERS_URL+'?offset='+offset+'&apikey='+MARVEL_API_KEY);
         dispatch(setOffsetCharacters(result.data.data.count));
         dispatch(updateCharacters(result.data.data.results));
     } catch (error) {
@@ -32,7 +32,7 @@ export const getMoreCharacters = (id = null, offset = 0) => async (dispatch) => 
 
 export const getMoreStories = (id = null, offset = 0) => async (dispatch) => {
     try {
-        const result = await axios.get(MARVEL_API+COMICS_URL+'/'+id+STORIES_URL+'?orderBy=issueNumber&offset='+offset+'&apikey='+MARVEL_API_KEY);
+        const result = await axios.get(MARVEL_API+COMICS_URL+'/'+id+STORIES_URL+'?&offset='+offset+'&apikey='+MARVEL_API_KEY);
         dispatch(setOffsetStories(result.data.data.count));
         dispatch(updateStories(result.data.data.results));
     } catch (error) {
