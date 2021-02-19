@@ -3,6 +3,7 @@ import { getMoreCharacters } from '../store/charactersSlice';
 import { useDispatch, useSelector } from "react-redux";
 
 const ListComponent = lazy(() => import('../components/ListComponent'));
+const HeaderFilter = lazy(() => import('../components/HeaderFilter'));
 
 export default function Characters(){
     const dispatch = useDispatch();
@@ -18,6 +19,8 @@ export default function Characters(){
     return (
         <div>
             <Suspense fallback={<p>Cargando...</p>}>
+                <HeaderFilter 
+                listType="characters" />
                 <ListComponent
                 items={dataList}
                 moreItemsLoading={moreItemsLoading}

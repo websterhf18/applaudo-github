@@ -3,6 +3,7 @@ import { getMoreComics } from '../store/comicsSlice';
 import { useDispatch, useSelector } from "react-redux";
 
 const ListComponent = lazy(() => import('../components/ListComponent'));
+const HeaderFilter = lazy(() => import('../components/HeaderFilter'));
 
 export default function Comics(){
     const dispatch = useDispatch();
@@ -19,13 +20,15 @@ export default function Comics(){
     return (
         <div>
             <Suspense fallback={<p>Cargando...</p>}>
-            <ListComponent
-            items={dataList}
-            moreItemsLoading={moreItemsLoading}
-            loadMore={loadMore}
-            hasNextPage={hasNextPage}
-            listType="comics"
-            />
+                <HeaderFilter 
+                listType="comics" />
+                <ListComponent
+                items={dataList}
+                moreItemsLoading={moreItemsLoading}
+                loadMore={loadMore}
+                hasNextPage={hasNextPage}
+                listType="comics"
+                />
             </Suspense>
         </div>
     )
