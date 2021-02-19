@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, lazy } from 'react';
 import { getMoreStories } from '../store/storiesSlice';
 import { useDispatch, useSelector } from "react-redux";
-import ListComponent from '../components/ListComponent';
+
+const ListComponent = lazy(() => import('../components/ListComponent'));
 
 export default function Stories(){
     const dispatch = useDispatch();

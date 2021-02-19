@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { getDetailCharacter } from '../store/charactersSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 
-import DetailComponent from '../components/DetailComponent';
+const DetailComponent = lazy(() => import('../components/DetailComponent'));
 
 export default function CharactersDetail(){
     const { id } = useParams();

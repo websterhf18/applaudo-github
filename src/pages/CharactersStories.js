@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy } from 'react';
 import { getMoreStories, updateEmpty } from '../store/charactersSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import ListComponent from '../components/ListComponent';
+const ListComponent = lazy(() => import('../components/ListComponent'));
 
 export default function CharactersStories(){
     const { id } = useParams();
