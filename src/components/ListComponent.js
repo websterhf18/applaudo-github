@@ -4,9 +4,11 @@ import InfiniteLoader from "react-window-infinite-loader";
 import { Card, Button, Row } from 'react-bootstrap';
 import { HeartFill } from 'react-bootstrap-icons';
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addFavorite } from '../store/favoritesSlice';
 
 const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listType }) => {
-    
+    const dispatch = useDispatch();
     const width = window.innerWidth;
     const height = window.innerHeight;
     //Functions to build grid
@@ -64,12 +66,19 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                     <Card.ImgOverlay>
                                         <Card.Title
                                         className="text-right">
-                                            <HeartFill color="royalblue" />
+                                            <HeartFill 
+                                            onClick={ () => {
+                                                dispatch(addFavorite({
+                                                    ...itemID, 
+                                                    type: listType
+                                                }));
+                                            }}
+                                            color="royalblue" />
                                         </Card.Title>
                                     </Card.ImgOverlay>
                                 : null}
                                 <Card.Body>
-                                    <Card.Title>{listType === 'comics' ||  listType === 'stories' ? itemID.title : itemID.name}</Card.Title>
+                                    <Card.Title>{listType === 'comics' ||  listType === 'stories' || itemID.type === 'comics' ? itemID.title : itemID.name}</Card.Title>
                                     <Card.Text style={{
                                         maxHeight: 100,
                                         overflow: 'hidden'
@@ -77,7 +86,7 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                     {itemID.description}
                                     </Card.Text>
                                 </Card.Body>
-                                {listType === 'characters' ?
+                                {listType === 'characters' || itemID.type === 'characters' ?
                                 <Card.Body style={{ 
                                     zIndex: 99999
                                 }}>
@@ -88,7 +97,7 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                         </Link>
                                 </Card.Body>
                                 : null}
-                                {listType === 'comics' ?
+                                {listType === 'comics' || itemID.type === 'comics' ?
                                 <Card.Body style={{ 
                                     zIndex: 99999
                                 }}>

@@ -17,6 +17,8 @@ import Stories from './pages/Stories';
 import StoriesCharacters from './pages/StoriesCharacters';
 import StoriesComics from './pages/StoriesComics';
 
+import Favorites from './pages/Favorites';
+
 function App() {
   return (
     <div className="App">
@@ -70,6 +72,10 @@ function App() {
                 exact
                 path="/stories/comics/:id"
                 component={StoriesComics} />
+                <Route
+                exact
+                path="/favorites"
+                component={Favorites} />
             </Switch>
         </BrowserRouter>
     </div>
