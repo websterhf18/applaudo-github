@@ -3,6 +3,9 @@ import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 const DetailComponent = ({ dataItem, imageUri, dataType  }) => {
+    if (imageUri.indexOf('https') === -1) {
+        imageUri = imageUri.replace('http', 'https');
+    }
     return (
         <Row>
             <Col>

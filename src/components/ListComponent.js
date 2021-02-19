@@ -42,6 +42,9 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                         if(itemID.thumbnail){
                             var {extension, path} = itemID.thumbnail;
                             imageuri = path+'/landscape_xlarge.'+extension;
+                            if (imageuri.indexOf('https') === -1) {
+                                imageuri = imageuri.replace('http', 'https');
+                            }
                         }
                         return (
                             <Card 
