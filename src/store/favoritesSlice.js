@@ -7,7 +7,7 @@ const favoritesSlice = createSlice({
     },
     reducers: {
         addFavorite(state, action) {
-            if(!state.favoritesList.includes(action.payload)){
+            if(!state.favoritesList.some(favorite => favorite.id === action.payload.id)){
                 state.favoritesList.push(action.payload)
             }
         },

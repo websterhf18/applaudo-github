@@ -2,12 +2,13 @@ import React from 'react';
 import { FixedSizeList } from 'react-window';
 import InfiniteLoader from "react-window-infinite-loader";
 import { Card, Button, Row } from 'react-bootstrap';
-import { HeartFill } from 'react-bootstrap-icons';
+import { Heart, HeartFill } from 'react-bootstrap-icons';
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFavorite } from '../store/favoritesSlice';
 
 const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listType }) => {
+    const favoritesList = useSelector(({ favorites }) => favorites.favoritesList);
     const dispatch = useDispatch();
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -20,6 +21,9 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
             result.push(i);
         }
         return result;
+    }
+    const checkFavorites = (objectCompare) => {
+        return favoritesList.some(favorite => favorite.id === objectCompare.id);
     }
     const getMaxItemsAmountPerRow = (width) => {
         return 3;
@@ -66,14 +70,18 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                     <Card.ImgOverlay>
                                         <Card.Title
                                         className="text-right">
-                                            <HeartFill 
-                                            onClick={ () => {
-                                                dispatch(addFavorite({
-                                                    ...itemID, 
-                                                    type: listType
-                                                }));
-                                            }}
-                                            color="royalblue" />
+                                            {checkFavorites(itemID) ?
+                                                <HeartFill 
+                                                color="royalblue" /> :
+                                                <Heart 
+                                                onClick={ () => {
+                                                    dispatch(addFavorite({
+                                                        ...itemID, 
+                                                        type: listType
+                                                    }));
+                                                }}
+                                                color="royalblue" />
+                                            }
                                         </Card.Title>
                                     </Card.ImgOverlay>
                                 : null}
