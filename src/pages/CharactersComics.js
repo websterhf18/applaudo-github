@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getMoreComics, updateEmpty, setOffsetComics } from '../store/charactersSlice';
+import { getMoreComics, updateEmpty } from '../store/charactersSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -12,14 +12,12 @@ export default function CharactersComics(){
     const dataList = useSelector(({ characters }) => characters.charactersComics)
     const offsetLocal = useSelector(({ characters }) => characters.offset_comics)
     //States
-    const [moreItemsLoading, setMoreItemsLoading] = useState(false);
-    const [hasNextPage, setHasNextPage] = useState(true);
-
-    const detailChar = useSelector(({ characters }) => characters.charactersDetail)
+    const [moreItemsLoading] = useState(false);
+    const [hasNextPage] = useState(true);
 
     useEffect(() => {
         dispatch(updateEmpty())
-    }, [detailChar])
+    }, [dispatch])
 
     const loadMore = () => {
         dispatch(getMoreComics(id, offsetLocal)); 

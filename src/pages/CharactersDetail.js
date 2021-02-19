@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getDetailCharacter } from '../store/charactersSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import DetailComponent from '../components/DetailComponent';
 
@@ -15,7 +15,7 @@ export default function CharactersDetail(){
     //Get data detail
     useEffect(() => {
         dispatch(getDetailCharacter(id))
-    }, [])
+    }, [dispatch, id])
 
     useEffect(() => {
         let imageuri;

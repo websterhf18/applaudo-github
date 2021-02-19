@@ -8,8 +8,8 @@ export default function Comics(){
     const dataList = useSelector(({ comics }) => comics.comicsList)
     const offsetLocal = useSelector(({ comics }) => comics.offset)
     //States
-    const [moreItemsLoading, setMoreItemsLoading] = useState(false);
-    const [hasNextPage, setHasNextPage] = useState(true);
+    const [moreItemsLoading] = useState(false);
+    const [hasNextPage] = useState(true);
     
     const loadMore = () => {
         dispatch(getMoreComics(offsetLocal)); 

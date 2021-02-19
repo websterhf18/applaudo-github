@@ -10,7 +10,6 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
     const width = window.innerWidth;
     const height = window.innerHeight;
     //Functions to build grid
-    const ITEM_WIDTH = 420;
     const ITEM_HEIGHT = 550;
     const generateIndexesForRow = (rowIndex, maxItemsPerRow, itemsAmount) => {
         const result = [];
@@ -64,7 +63,7 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                     </Card.ImgOverlay>
                                 : null}
                                 <Card.Body>
-                                    <Card.Title>{listType == 'comics' ||  listType == 'stories' ? itemID.title : itemID.name}</Card.Title>
+                                    <Card.Title>{listType === 'comics' ||  listType === 'stories' ? itemID.title : itemID.name}</Card.Title>
                                     <Card.Text style={{
                                         maxHeight: 100,
                                         overflow: 'hidden'
@@ -72,7 +71,7 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                     {itemID.description}
                                     </Card.Text>
                                 </Card.Body>
-                                {listType == 'characters' ?
+                                {listType === 'characters' ?
                                 <Card.Body style={{ 
                                     zIndex: 99999
                                 }}>
@@ -83,7 +82,7 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                         </Link>
                                 </Card.Body>
                                 : null}
-                                {listType == 'comics' ?
+                                {listType === 'comics' ?
                                 <Card.Body style={{ 
                                     zIndex: 99999
                                 }}>
@@ -94,19 +93,19 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                         </Link>
                                 </Card.Body>
                                 : null}
-                                {listType == 'stories' ?
+                                {listType === 'stories' ?
                                 <Card.Body style={{ 
                                     zIndex: 99999
                                 }}>
                                         <Link to={`/stories/characters/${itemID.id}`}>
                                             <Button 
-                                            disabled={(itemID.characters.available == 0 ? true: false)}                                           
+                                            disabled={(itemID.characters.available === 0 ? true: false)}                                           
                                             className="m-2"
                                             variant="primary">View characters</Button>
                                         </Link>
                                         <Link to={`/stories/comics/${itemID.id}`}>
                                             <Button        
-                                            disabled={(itemID.comics.available == 0 ? true: false)}                                    
+                                            disabled={(itemID.comics.available === 0 ? true: false)}                                    
                                             className="m-2"
                                             variant="primary">View comics</Button>
                                         </Link>

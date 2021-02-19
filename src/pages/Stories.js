@@ -8,8 +8,8 @@ export default function Stories(){
     const dataList = useSelector(({ stories }) => stories.storiesList)
     const offsetLocal = useSelector(({ stories }) => stories.offset)
     //States
-    const [moreItemsLoading, setMoreItemsLoading] = useState(false);
-    const [hasNextPage, setHasNextPage] = useState(true);
+    const [moreItemsLoading] = useState(false);
+    const [hasNextPage] = useState(true);
     
     const loadMore = () => {
         dispatch(getMoreStories(offsetLocal)); 

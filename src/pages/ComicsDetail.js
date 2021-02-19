@@ -15,7 +15,7 @@ export default function ComicsDetail(){
     //Get data detail
     useEffect(() => {
         dispatch(getDetailComics(id))
-    }, [])
+    }, [dispatch, id])
 
     useEffect(() => {
         let imageuri;

@@ -12,12 +12,12 @@ export default function StoriesComics(){
     const dataList = useSelector(({ stories }) => stories.comics)
     const offsetLocal = useSelector(({ stories }) => stories.offset_comics)
     //States
-    const [moreItemsLoading, setMoreItemsLoading] = useState(false);
-    const [hasNextPage, setHasNextPage] = useState(true);
+    const [moreItemsLoading] = useState(false);
+    const [hasNextPage] = useState(true);
 
     useEffect(() => {
         dispatch(updateEmpty())
-    }, [])
+    }, [dispatch])
 
     const loadMore = () => {
         dispatch(getMoreComics(id, offsetLocal)); 

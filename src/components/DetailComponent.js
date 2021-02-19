@@ -6,23 +6,23 @@ const DetailComponent = ({ dataItem, imageUri, dataType  }) => {
     return (
         <Row>
             <Col>
-                <img src={imageUri}/>
+                <img alt="Detail component" src={imageUri}/>
             </Col>
             <Col>
-                {dataType == 'comics' ?
+                {dataType === 'comics' ?
                 <h2>{dataItem.title}</h2>
                 : <h2>{dataItem.name}</h2> }
                 <p>
                     {dataItem.description}
                 </p>
-                {dataType == 'comics' ?
+                {dataType === 'comics' ?
                 <div>
                     <p>
                         Characters: {dataItem.characters.available}
                     </p>
                     <Link to={`/comics/characters/${dataItem.id}`}>
                         <Button 
-                        disabled={(dataItem.characters.available == 0 ? true: false)}                                        
+                        disabled={(dataItem.characters.available === 0 ? true: false)}                                        
                         className="m-2"
                         variant="primary">Go Characters</Button>
                     </Link>
@@ -31,13 +31,13 @@ const DetailComponent = ({ dataItem, imageUri, dataType  }) => {
                     </p>
                     <Link to={`/comics/stories/${dataItem.id}`}>
                         <Button  
-                        disabled={(dataItem.stories.available == 0 ? true: false)}                                       
+                        disabled={(dataItem.stories.available === 0 ? true: false)}                                       
                         className="m-2"
                         variant="primary">Go Stories</Button>
                     </Link>
                 </div>
                 : null }
-                {dataType == 'characters' ?
+                {dataType === 'characters' ?
                 <div>
                     <p>
                         Comics: {dataItem.comics.available}

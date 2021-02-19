@@ -8,8 +8,8 @@ export default function Characters(){
     const dataList = useSelector(({ characters }) => characters.charactersList)
     const offsetLocal = useSelector(({ characters }) => characters.offset)
     //States
-    const [moreItemsLoading, setMoreItemsLoading] = useState(false);
-    const [hasNextPage, setHasNextPage] = useState(true);
+    const [moreItemsLoading] = useState(false);
+    const [hasNextPage] = useState(true);
 
     const loadMore = () => {
         dispatch(getMoreCharacters(offsetLocal)); 
