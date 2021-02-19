@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { getDetailCharacter } from '../store/charactersSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -27,11 +27,13 @@ export default function CharactersDetail(){
     }, [detailObject])
     return (
         <Container>
+            <Suspense fallback={<p>Cargando...</p>}>
             <DetailComponent 
             dataItem={detailObject}
             imageUri={ImgUri}
             dataType='characters'
             />
+            </Suspense>
         </Container>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { getMoreComics, updateEmpty } from '../store/charactersSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -25,13 +25,15 @@ export default function CharactersComics(){
     
     return (
         <div>
-            <ListComponent
-            items={dataList}
-            moreItemsLoading={moreItemsLoading}
-            loadMore={loadMore}
-            hasNextPage={hasNextPage}
-            listType="comics"
-            />
+            <Suspense fallback={<p>Cargando...</p>}>
+                <ListComponent
+                items={dataList}
+                moreItemsLoading={moreItemsLoading}
+                loadMore={loadMore}
+                hasNextPage={hasNextPage}
+                listType="comics"
+                />
+            </Suspense>
         </div> 
     )
 }

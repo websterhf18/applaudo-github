@@ -1,4 +1,4 @@
-import React, { useState, lazy } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { getMoreStories } from '../store/storiesSlice';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -17,6 +17,7 @@ export default function Stories(){
     }
     return (
         <div>
+            <Suspense fallback={<p>Cargando...</p>}>
             <ListComponent
             items={dataList}
             moreItemsLoading={moreItemsLoading}
@@ -24,6 +25,7 @@ export default function Stories(){
             hasNextPage={hasNextPage}
             listType="stories"
             />
+            </Suspense>
         </div>
     )
 }
