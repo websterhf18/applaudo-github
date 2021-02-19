@@ -55,7 +55,10 @@ const ListComponent = ({ items, moreItemsLoading, loadMore, hasNextPage, listTyp
                                 height: ITEM_HEIGHT - 20
                             }}>
                                 {listType !== 'stories' ? 
-                                    <Card.Img variant="top" src={imageuri} />
+                                    <Card.Img 
+                                    width={285}
+                                    height={210}
+                                    variant="top" src={imageuri} />
                                 : null}
                                 {listType !== 'stories' ? 
                                     <Card.ImgOverlay>
